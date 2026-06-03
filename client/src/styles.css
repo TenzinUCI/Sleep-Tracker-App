@@ -1,0 +1,379 @@
+/* You can add global styles to this file, and also import other style files */
+/* ---------- CSS Theme Variables ---------- */
+
+:root {
+  --bg-main: #090a0f;
+  --bg-card: rgba(19, 22, 38, 0.88);
+  --bg-card-soft: rgba(255, 255, 255, 0.08);
+
+  --text-main: #f7f7fb;
+  --text-muted: #a7a9bd;
+
+  --accent: #9bb4ff;
+  --accent-strong: #6f8dff;
+
+  --success: #7ee787;
+  --warning: #ffd166;
+  --danger: #ff6b6b;
+
+  --border-soft: rgba(255, 255, 255, 0.14);
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+}
+
+/* ---------- Base Reset ---------- */
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ---------- Star Background Layer ---------- */
+
+.star-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.star-background::before,
+.star-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  animation: moveStars 80s linear infinite;
+}
+
+.star-background::before {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #ffffff, transparent),
+    radial-gradient(1px 1px at 80px 120px, #ffffff, transparent),
+    radial-gradient(1px 1px at 160px 90px, #ffffff, transparent),
+    radial-gradient(1px 1px at 240px 180px, #ffffff, transparent),
+    radial-gradient(1px 1px at 330px 260px, #ffffff, transparent),
+    radial-gradient(1px 1px at 380px 340px, #ffffff, transparent);
+  opacity: 0.85;
+}
+
+.star-background::after {
+  background-image:
+    radial-gradient(2px 2px at 50px 80px, #ffffff, transparent),
+    radial-gradient(2px 2px at 170px 210px, #ffffff, transparent),
+    radial-gradient(2px 2px at 290px 120px, #ffffff, transparent),
+    radial-gradient(2px 2px at 360px 300px, #ffffff, transparent);
+  opacity: 0.55;
+  animation-duration: 130s;
+}
+
+#stars,
+#stars2,
+#stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border-radius: 50%;
+  animation: animStar linear infinite;
+}
+
+#stars {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    24px 152px #fff,
+    91px 382px #fff,
+    137px 1114px #fff,
+    246px 1048px #fff,
+    300px 737px #fff,
+    404px 975px #fff,
+    507px 558px #fff,
+    624px 1380px #fff,
+    731px 647px #fff,
+    865px 1064px #fff,
+    977px 1764px #fff,
+    1084px 1183px #fff,
+    1221px 1584px #fff,
+    1343px 156px #fff,
+    1469px 678px #fff,
+    1597px 1576px #fff,
+    1734px 413px #fff,
+    1841px 1962px #fff,
+    1962px 766px #fff,
+    1991px 1875px #fff;
+  animation-duration: 50s;
+}
+
+#stars::after {
+  content: "";
+  position: absolute;
+  top: 2000px;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow:
+    24px 152px #fff,
+    91px 382px #fff,
+    137px 1114px #fff,
+    246px 1048px #fff,
+    300px 737px #fff,
+    404px 975px #fff,
+    507px 558px #fff,
+    624px 1380px #fff,
+    731px 647px #fff,
+    865px 1064px #fff,
+    977px 1764px #fff,
+    1084px 1183px #fff,
+    1221px 1584px #fff,
+    1343px 156px #fff,
+    1469px 678px #fff,
+    1597px 1576px #fff,
+    1734px 413px #fff,
+    1841px 1962px #fff,
+    1962px 766px #fff,
+    1991px 1875px #fff;
+}
+
+#stars2 {
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    50px 80px #fff,
+    171px 745px #fff,
+    270px 279px #fff,
+    393px 1765px #fff,
+    542px 33px #fff,
+    693px 1778px #fff,
+    806px 156px #fff,
+    955px 659px #fff,
+    1113px 1698px #fff,
+    1233px 285px #fff,
+    1371px 1980px #fff,
+    1473px 1587px #fff,
+    1610px 44px #fff,
+    1744px 1119px #fff,
+    1925px 1320px #fff;
+  animation-duration: 100s;
+}
+
+#stars2::after {
+  content: "";
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow:
+    50px 80px #fff,
+    171px 745px #fff,
+    270px 279px #fff,
+    393px 1765px #fff,
+    542px 33px #fff,
+    693px 1778px #fff,
+    806px 156px #fff,
+    955px 659px #fff,
+    1113px 1698px #fff,
+    1233px 285px #fff,
+    1371px 1980px #fff,
+    1473px 1587px #fff,
+    1610px 44px #fff,
+    1744px 1119px #fff,
+    1925px 1320px #fff;
+}
+
+#stars3 {
+  width: 3px;
+  height: 3px;
+  box-shadow:
+    132px 1039px #fff,
+    200px 981px #fff,
+    324px 1895px #fff,
+    457px 568px #fff,
+    627px 1514px #fff,
+    741px 121px #fff,
+    872px 1803px #fff,
+    1017px 1602px #fff,
+    1197px 1400px #fff,
+    1364px 1846px #fff,
+    1507px 1120px #fff,
+    1684px 1211px #fff,
+    1833px 832px #fff,
+    1969px 645px #fff;
+  animation-duration: 150s;
+}
+
+#stars3::after {
+  content: "";
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow:
+    132px 1039px #fff,
+    200px 981px #fff,
+    324px 1895px #fff,
+    457px 568px #fff,
+    627px 1514px #fff,
+    741px 121px #fff,
+    872px 1803px #fff,
+    1017px 1602px #fff,
+    1197px 1400px #fff,
+    1364px 1846px #fff,
+    1507px 1120px #fff,
+    1684px 1211px #fff,
+    1833px 832px #fff,
+    1969px 645px #fff;
+}
+
+/* ---------- App Content Layer ---------- */
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* ---------- Reusable App Classes ---------- */
+
+.sleep-card {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+}
+
+.sleep-card-soft {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--bg-card-soft);
+  color: var(--text-main);
+  backdrop-filter: blur(12px);
+}
+
+.text-muted-app {
+  color: var(--text-muted);
+}
+
+.primary-button {
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #0b1020;
+  font-weight: 700;
+  padding: 0.8rem 1.25rem;
+}
+
+.primary-button:hover {
+  background: var(--accent-strong);
+}
+
+.secondary-button {
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  font-weight: 700;
+  padding: 0.8rem 1.25rem;
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.danger-button {
+  border: none;
+  border-radius: 999px;
+  background: var(--danger);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.8rem 1.25rem;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ---------- Forms ---------- */
+
+input,
+textarea,
+select {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  padding: 0.75rem 0.9rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes moveStars {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-400px);
+  }
+}
+
+/* ---------- Accessibility: Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .star-background::before,
+  .star-background::after,
+  #stars,
+  #stars2,
+  #stars3 {
+    animation: none;
+  }
+}

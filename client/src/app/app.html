@@ -1,0 +1,44 @@
+<div class="star-background" aria-hidden="true">
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+</div>
+
+<div class="app-shell">
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon">☾</div>
+
+      <div>
+        <p class="brand-label">Sleep Tracker</p>
+        <p class="brand-subtitle">Track your sleep locally</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <router-outlet />
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      aria-label="Home page"
+    >
+      <span class="nav-icon">⌂</span>
+      <span class="nav-text">Home</span>
+    </a>
+
+    <a routerLink="/stats" routerLinkActive="active" aria-label="Stats page">
+      <span class="nav-icon">▥</span>
+      <span class="nav-text">Stats</span>
+    </a>
+
+    <a routerLink="/settings" routerLinkActive="active" aria-label="Settings page">
+      <span class="nav-icon">⚙</span>
+      <span class="nav-text">Settings</span>
+    </a>
+  </nav>
+</div>
