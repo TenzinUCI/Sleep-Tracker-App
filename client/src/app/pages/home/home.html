@@ -2,180 +2,22 @@
   <div class="container-fluid px-0">
     <div class="row g-3">
       <section class="col-12">
-        <div class="sleep-card recent-card">
-          <div class="section-heading">
-            <p class="eyebrow">Most Recent</p>
-            <h1>Recent Sleep Data</h1>
-          </div>
-
-          <div class="sleep-summary-widget" *ngIf="recentSleepLog; else noRecentSleep">
-            <div class="sleep-summary-row">
-              <div class="sleep-summary-item">
-                <span>Start</span>
-                <strong>{{ formatTime(recentSleepLog.startTime) }}</strong>
-              </div>
-
-              <div class="sleep-summary-item">
-                <span>End</span>
-                <strong>{{ formatTime(recentSleepLog.endTime) }}</strong>
-              </div>
-
-              <div class="sleep-summary-item">
-                <span>Duration</span>
-                <strong>{{ formatDuration(recentSleepLog.totalDuration) }}</strong>
-              </div>
-
-              <div class="sleep-summary-item">
-                <span>Rating</span>
-                <strong>{{ formatRating(recentSleepLog.rating) }}</strong>
-              </div>
-            </div>
-          </div>
-
-          <ng-template #noRecentSleep>
-            <div class="empty-summary" role="status">
-              No sleep data logged yet.
-            </div>
-          </ng-template>
-        </div>
+        <app-recent-sleep-summary [sleepLog]="recentSleepLog" />
       </section>
 
       <section class="col-12 col-lg-8">
-        <div class="sleep-card timer-card">
-          <div class="section-heading text-center">
-            <p class="eyebrow">Track Sleep</p>
-            <h2>{{ isTracking ? 'Tracking Sleep' : 'Ready to sleep?' }}</h2>
-          </div>
-
-          <div
-            class="timer-display"
-            role="timer"
-            [attr.aria-label]="'Elapsed sleep timer: ' + hours + ' hours, ' + minutes + ' minutes, and ' + seconds + ' seconds'"
-          >
-            <span>{{ hours }}</span>
-            <span class="timer-divider" aria-hidden="true">:</span>
-            <span>{{ minutes }}</span>
-            <span class="timer-divider" aria-hidden="true">:</span>
-            <span>{{ seconds }}</span>
-          </div>
-
-          <p class="timer-status" aria-live="polite" aria-atomic="true">
-            {{ isTracking ? 'Tracking your sleep.' : 'Press start when you are going to sleep.' }}
-          </p>
-
-          <div class="timer-actions">
-            <button
-              #startSleepButton
-              class="primary-button"
-              type="button"
-              (click)="startSleep()"
-              [disabled]="isTracking"
-              aria-label="Start sleep timer"
-            >
-              Start
-            </button>
-
-            <button
-              class="secondary-button"
-              type="button"
-              (click)="endSleep()"
-              [disabled]="!isTracking"
-              aria-label="End sleep timer"
-            >
-              End
-            </button>
-          </div>
-        </div>
+        <app-sleep-timer (sleepEnded)="handleSleepEnded($event)" />
       </section>
 
       <section class="col-12 col-lg-4">
-        <div class="sleep-card suggestion-card">
-          <div class="section-heading">
-            <p class="eyebrow">Sleep Suggestion</p>
-            <h2>Sleep Suggestion</h2>
-          </div>
-
-          <p aria-live="polite">
-            {{ getSleepSuggestion() }}
-          </p>
-
-          <div class="suggestion-note">
-            OpenAI suggestions can be added later. This version uses simple local logic.
-          </div>
-        </div>
+        <app-sleep-suggestion-card [sleepLog]="recentSleepLog" />
       </section>
     </div>
   </div>
 </section>
 
-<div class="review-modal-backdrop" *ngIf="showReviewModal">
-  <section
-    class="review-modal sleep-card"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="reviewTitle"
-    aria-describedby="reviewDescription"
-  >
-    <button
-      class="modal-close-button"
-      type="button"
-      aria-label="Skip sleep review"
-      (click)="skipReview()"
-    >
-      ×
-    </button>
-
-    <div class="section-heading">
-      <p class="eyebrow">Sleep Review</p>
-      <h2 id="reviewTitle" #reviewHeading tabindex="-1">Rate your sleep</h2>
-    </div>
-
-    <p id="reviewDescription" class="modal-description">
-      Rate your sleep quality from 1 to 5 stars. You can also add an optional comment.
-    </p>
-
-    <div class="rating-row" role="radiogroup" aria-label="Sleep rating from 1 to 5 stars">
-      <button
-        *ngFor="let star of stars"
-        type="button"
-        role="radio"
-        class="star-button"
-        [class.active]="star <= selectedRating"
-        [attr.aria-checked]="star === selectedRating"
-        (click)="selectRating(star)"
-        [attr.aria-label]="star + ' out of 5 stars'"
-      >
-        ★
-      </button>
-    </div>
-
-    <label class="comment-label" for="sleepComment">
-      Comment <span>(optional)</span>
-    </label>
-
-    <textarea
-      id="sleepComment"
-      rows="4"
-      [(ngModel)]="sleepComment"
-      placeholder="Optional comment about your sleep..."
-    ></textarea>
-
-    <div class="modal-actions">
-      <button
-        class="secondary-button"
-        type="button"
-        (click)="skipReview()"
-      >
-        Skip
-      </button>
-
-      <button
-        class="primary-button"
-        type="button"
-        (click)="submitReview()"
-      >
-        Submit
-      </button>
-    </div>
-  </section>
-</div>
+<app-sleep-review-modal
+  *ngIf="showReviewModal"
+  (reviewSubmitted)="handleReviewSubmitted($event)"
+  (reviewSkipped)="handleReviewSkipped()"
+/>

@@ -1,0 +1,34 @@
+.stat-card {
+  min-height: 5.3rem;
+  padding: 1rem;
+}
+
+.stat-card p {
+  margin: 0 0 0.45rem;
+  color: #aab7ff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.stat-card strong {
+  color: #ffffff;
+  font-size: clamp(1.25rem, 5vw, 1.8rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+@media (max-width: 420px) {
+  .stat-card {
+    padding: 0.85rem 0.7rem;
+  }
+
+  .stat-card p {
+    font-size: 0.58rem;
+  }
+
+  .stat-card strong {
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,42 @@
+.section-heading {
+  margin-bottom: 1rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.suggestion-card {
+  height: 100%;
+  padding: 1.25rem;
+}
+
+.suggestion-card p {
+  margin: 0 0 1rem;
+  color: #d5daf0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.suggestion-note {
+  padding: 0.9rem;
+  border: 1px solid rgba(155, 180, 255, 0.4);
+  border-radius: var(--radius-md);
+  background: rgba(155, 180, 255, 0.14);
+  color: #ffffff;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}

@@ -1,0 +1,54 @@
+.log-widget {
+  padding: 1.25rem;
+}
+
+.log-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.log-top h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.add-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #9fa8ff, #64b5ff);
+  color: #10142a;
+  font-weight: 800;
+}
+
+.add-button i {
+  font-size: 1.15rem;
+}
+
+.empty-log {
+  padding: 1rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.06);
+  color: #d5daf0;
+  text-align: center;
+}
+
+.log-list {
+  display: grid;
+  gap: 0.25rem;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--warning);
+  outline-offset: 3px;
+}

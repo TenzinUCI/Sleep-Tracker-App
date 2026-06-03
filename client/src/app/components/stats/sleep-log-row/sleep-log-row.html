@@ -1,0 +1,48 @@
+<article
+  class="log-row"
+  role="button"
+  tabindex="0"
+  (click)="editClicked.emit(log)"
+  [attr.aria-label]="'Edit sleep log from ' + formatDate(log.endTime)"
+>
+  <div class="log-info">
+    <strong>{{ formatDuration(log.totalDuration) }}</strong>
+
+    <span>
+      {{ formatDate(log.endTime) }}
+      ·
+      {{ formatTime(log.startTime) }} – {{ formatTime(log.endTime) }}
+    </span>
+
+    <div class="rating-stars" aria-label="Rating">
+      <ng-container *ngFor="let star of stars">
+        <i
+          class="bi"
+          [class.bi-star-fill]="log.rating !== null && star <= log.rating"
+          [class.bi-star]="log.rating === null || star > log.rating"
+          aria-hidden="true"
+        ></i>
+      </ng-container>
+
+      <span class="rating-text" *ngIf="log.rating === null">N/A</span>
+    </div>
+  </div>
+
+  <div class="row-actions">
+    <button
+      type="button"
+      aria-label="Edit sleep log"
+      (click)="editLog($event)"
+    >
+      <i class="bi bi-pencil" aria-hidden="true"></i>
+    </button>
+
+    <button
+      type="button"
+      aria-label="Delete sleep log"
+      (click)="deleteLog($event)"
+    >
+      <i class="bi bi-trash" aria-hidden="true"></i>
+    </button>
+  </div>
+</article>

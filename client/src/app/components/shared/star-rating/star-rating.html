@@ -1,0 +1,14 @@
+<div class="rating-row" role="radiogroup" aria-label="Sleep rating from 1 to 5 stars">
+  <button
+    *ngFor="let star of stars"
+    type="button"
+    role="radio"
+    class="star-button"
+    [class.active]="star <= rating"
+    [attr.aria-checked]="star === rating"
+    (click)="selectRating(star)"
+    [attr.aria-label]="star + ' out of 5 stars'"
+  >
+    ★
+  </button>
+</div>

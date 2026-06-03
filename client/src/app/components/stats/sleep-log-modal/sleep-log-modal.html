@@ -1,0 +1,69 @@
+<div class="modal-backdrop">
+  <section
+    class="sleep-card log-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+    <button
+      class="close-button"
+      type="button"
+      aria-label="Close modal"
+      (click)="close()"
+    >
+      ×
+    </button>
+
+    <h2 id="modalTitle">{{ title }}</h2>
+
+    <form class="modal-form" (ngSubmit)="save()">
+      <label for="startTime">Start time</label>
+      <input
+        id="startTime"
+        name="startTime"
+        type="datetime-local"
+        [(ngModel)]="startTime"
+        required
+      />
+
+      <label for="endTime">End time</label>
+      <input
+        id="endTime"
+        name="endTime"
+        type="datetime-local"
+        [(ngModel)]="endTime"
+        required
+      />
+
+      <label>Rating</label>
+      <app-star-rating [(rating)]="rating" />
+
+      <label for="comment">Comment <span>(optional)</span></label>
+      <textarea
+        id="comment"
+        name="comment"
+        rows="3"
+        [(ngModel)]="comment"
+        placeholder="Optional sleep note..."
+      ></textarea>
+
+      <div class="modal-actions">
+        <button
+          class="secondary-button"
+          type="button"
+          (click)="close()"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="primary-button"
+          type="submit"
+          [disabled]="!canSave()"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,70 @@
+.section-heading {
+  margin-bottom: 1rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timer-card {
+  padding: 1.5rem 1.25rem;
+}
+
+.timer-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 1.5rem 0 0.75rem;
+  color: #ffffff;
+  font-size: clamp(2.8rem, 14vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.timer-divider {
+  color: var(--accent);
+  transform: translateY(-0.1rem);
+}
+
+.timer-status {
+  margin: 0 auto 1.35rem;
+  max-width: 18rem;
+  color: #d5daf0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.timer-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--warning);
+  outline-offset: 3px;
+}
+
+@media (min-width: 992px) {
+  .timer-card {
+    min-height: 24rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

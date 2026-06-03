@@ -1,197 +1,41 @@
 <section class="stats-page">
   <div class="container-fluid px-0">
-    <div class="row g-3">
-      <section class="col-12">
-        <div class="section-heading">
-          <p class="eyebrow">Stats</p>
-          <h1>Sleep Overview</h1>
-        </div>
-      </section>
+    <header class="stats-header">
+      <h1>Stats</h1>
+      <p>Patterns from your nights.</p>
+    </header>
 
-      <section class="col-12 col-md-4">
-        <div class="sleep-card stat-card">
-          <span>Average Sleep</span>
-          <strong>{{ averageSleepHours }}</strong>
-        </div>
-      </section>
+    <div class="summary-grid">
+      <app-stat-summary-card
+        label="Avg Sleep"
+        [value]="averageSleep"
+      />
 
-      <section class="col-12 col-md-4">
-        <div class="sleep-card stat-card">
-          <span>Average Rating</span>
-          <strong>{{ averageRating }}</strong>
-        </div>
-      </section>
+      <app-stat-summary-card
+        label="Avg Rating"
+        [value]="averageRating"
+      />
 
-      <section class="col-12 col-md-4">
-        <div class="sleep-card stat-card">
-          <span>Total Logged</span>
-          <strong>{{ totalLoggedSleep }}</strong>
-        </div>
-      </section>
-
-      <section class="col-12 col-lg-7">
-        <div class="sleep-card graph-card">
-          <div class="graph-header">
-            <div>
-              <p class="eyebrow">Graph</p>
-              <h2>Sleep Duration</h2>
-            </div>
-
-            <label class="graph-select-label">
-              <span>View</span>
-              <select [(ngModel)]="graphView" aria-label="Choose graph range">
-                <option value="week">Current Week</option>
-                <option value="month">Current Month</option>
-                <option value="year">Current Year</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="bar-graph" aria-label="Sleep duration graph">
-            <div
-              class="bar-column"
-              *ngFor="let bar of graphData"
-              [attr.aria-label]="bar.label + ': ' + formatDuration(bar.totalDuration)"
-            >
-              <div class="bar-track">
-                <div
-                  class="bar-fill"
-                  [style.height]="getBarHeight(bar.totalDuration)"
-                ></div>
-              </div>
-
-              <span class="bar-label">{{ bar.label }}</span>
-              <small>{{ formatDuration(bar.totalDuration) }}</small>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="col-12 col-lg-5">
-        <div class="sleep-card manual-card">
-          <div class="section-heading">
-            <p class="eyebrow">Manual Control</p>
-            <h2>{{ manualFormTitle }}</h2>
-          </div>
-
-          <form class="manual-form" (ngSubmit)="saveManualLog()">
-            <label for="manualStartTime">
-              Start Time
-            </label>
-            <input
-              id="manualStartTime"
-              name="manualStartTime"
-              type="datetime-local"
-              [(ngModel)]="manualStartTime"
-              required
-            />
-
-            <label for="manualEndTime">
-              End Time
-            </label>
-            <input
-              id="manualEndTime"
-              name="manualEndTime"
-              type="datetime-local"
-              [(ngModel)]="manualEndTime"
-              required
-            />
-
-            <label for="manualRating">
-              Rating
-            </label>
-            <select
-              id="manualRating"
-              name="manualRating"
-              [(ngModel)]="manualRating"
-            >
-              <option [ngValue]="null">N/A</option>
-              <option *ngFor="let rating of ratings" [ngValue]="rating">
-                {{ rating }} / 5
-              </option>
-            </select>
-
-            <label for="manualComment">
-              Comment <span>(optional)</span>
-            </label>
-            <textarea
-              id="manualComment"
-              name="manualComment"
-              rows="3"
-              [(ngModel)]="manualComment"
-              placeholder="Optional sleep note..."
-            ></textarea>
-
-            <div class="manual-actions">
-              <button
-                class="secondary-button"
-                type="button"
-                (click)="clearManualForm()"
-              >
-                Clear
-              </button>
-
-              <button
-                class="primary-button"
-                type="submit"
-                [disabled]="!canSaveManualLog()"
-              >
-                {{ editingLogId ? 'Update' : 'Add' }}
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <section class="col-12">
-        <div class="sleep-card log-list-card">
-          <div class="section-heading">
-            <p class="eyebrow">Recent Logs</p>
-            <h2>Latest Sleep Data</h2>
-          </div>
-
-          <div class="empty-list" *ngIf="recentLogs.length === 0" role="status">
-            No sleep logs yet.
-          </div>
-
-          <div class="log-list" *ngIf="recentLogs.length > 0">
-            <article class="log-item" *ngFor="let log of recentLogs">
-              <div class="log-main">
-                <strong>{{ formatDate(log.endTime) }}</strong>
-                <span>{{ formatDuration(log.totalDuration) }}</span>
-              </div>
-
-              <div class="log-details">
-                <span>Start: {{ formatTime(log.startTime) }}</span>
-                <span>End: {{ formatTime(log.endTime) }}</span>
-                <span>Rating: {{ formatRating(log.rating) }}</span>
-              </div>
-
-              <p class="log-comment" *ngIf="log.comment">
-                {{ log.comment }}
-              </p>
-
-              <div class="log-actions">
-                <button
-                  class="secondary-button"
-                  type="button"
-                  (click)="editLog(log)"
-                >
-                  Edit
-                </button>
-
-                <button
-                  class="danger-button"
-                  type="button"
-                  (click)="deleteLog(log.id)"
-                >
-                  Delete
-                </button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+      <app-stat-summary-card
+        label="Logged"
+        [value]="totalLogs"
+      />
     </div>
+
+    <app-sleep-graph-widget [logs]="logs" />
+
+    <app-sleep-log-widget
+      [logs]="logs"
+      (addClicked)="openAddModal()"
+      (editClicked)="openEditModal($event)"
+      (deleteClicked)="deleteLog($event)"
+    />
   </div>
 </section>
+
+<app-sleep-log-modal
+  *ngIf="modalOpen"
+  [log]="logToEdit"
+  (saveClicked)="saveLog($event)"
+  (closeClicked)="closeModal()"
+/>

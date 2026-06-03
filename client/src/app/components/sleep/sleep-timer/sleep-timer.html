@@ -1,0 +1,44 @@
+<div class="sleep-card timer-card">
+  <div class="section-heading text-center">
+    <p class="eyebrow">Track Sleep</p>
+    <h2>{{ isTracking ? 'Tracking Sleep' : 'Ready to sleep?' }}</h2>
+  </div>
+
+  <div
+    class="timer-display"
+    role="timer"
+    [attr.aria-label]="'Elapsed sleep timer: ' + hours + ' hours, ' + minutes + ' minutes, and ' + seconds + ' seconds'"
+  >
+    <span>{{ hours }}</span>
+    <span class="timer-divider" aria-hidden="true">:</span>
+    <span>{{ minutes }}</span>
+    <span class="timer-divider" aria-hidden="true">:</span>
+    <span>{{ seconds }}</span>
+  </div>
+
+  <p class="timer-status" aria-live="polite" aria-atomic="true">
+    {{ isTracking ? 'Tracking your sleep.' : 'Press start when you are going to sleep.' }}
+  </p>
+
+  <div class="timer-actions">
+    <button
+      class="primary-button"
+      type="button"
+      (click)="startSleep()"
+      [disabled]="isTracking"
+      aria-label="Start sleep timer"
+    >
+      Start
+    </button>
+
+    <button
+      class="secondary-button"
+      type="button"
+      (click)="endSleep()"
+      [disabled]="!isTracking"
+      aria-label="End sleep timer"
+    >
+      End
+    </button>
+  </div>
+</div>

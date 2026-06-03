@@ -1,0 +1,28 @@
+<section class="sleep-card log-widget">
+  <div class="log-top">
+    <h2>Sleep log</h2>
+
+    <button
+      class="add-button"
+      type="button"
+      (click)="addClicked.emit()"
+      aria-label="Add sleep log"
+    >
+      <i class="bi bi-plus" aria-hidden="true"></i>
+      <span>Add</span>
+    </button>
+  </div>
+
+  <div class="empty-log" *ngIf="recentLogs.length === 0" role="status">
+    No sleep logs yet.
+  </div>
+
+  <div class="log-list" *ngIf="recentLogs.length > 0">
+    <app-sleep-log-row
+      *ngFor="let log of recentLogs"
+      [log]="log"
+      (editClicked)="editClicked.emit($event)"
+      (deleteClicked)="deleteClicked.emit($event)"
+    />
+  </div>
+</section>

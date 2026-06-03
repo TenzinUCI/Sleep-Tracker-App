@@ -1,0 +1,139 @@
+.graph-widget {
+  min-height: 18.75rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.graph-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.graph-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.graph-picker i {
+  color: #aab7ff;
+}
+
+.graph-picker select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  padding: 0;
+  font-weight: 800;
+}
+
+.graph-picker select:focus {
+  outline: none;
+}
+
+.graph-picker select option {
+  color: #0d1024;
+}
+
+.range-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.range-toggle button {
+  min-width: 2.4rem;
+  min-height: 2rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: #9fa9d8;
+  font-weight: 800;
+}
+
+.range-toggle button.active {
+  background: #aab7ff;
+  color: #10142a;
+}
+
+.range-toggle button:disabled {
+  opacity: 0.75;
+}
+
+.graph-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+  align-items: end;
+  gap: 0.65rem;
+  height: 12rem;
+  padding: 1rem 0.25rem 0;
+}
+
+.graph-column {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.4rem;
+  height: 100%;
+  text-align: center;
+}
+
+.bar-space {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  min-height: 0;
+}
+
+.bar-fill {
+  width: 100%;
+  max-width: 2.2rem;
+  border-radius: 999px 999px 0.25rem 0.25rem;
+  background: linear-gradient(180deg, #64b5ff, #9fa8ff);
+}
+
+.graph-column span {
+  color: #b7c4ff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.graph-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  color: #b7c4ff;
+  font-size: 0.75rem;
+}
+
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--warning);
+  outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+  .graph-top {
+    align-items: stretch;
+  }
+
+  .graph-picker {
+    flex: 1;
+  }
+
+  .range-toggle button {
+    min-width: 2.1rem;
+  }
+}

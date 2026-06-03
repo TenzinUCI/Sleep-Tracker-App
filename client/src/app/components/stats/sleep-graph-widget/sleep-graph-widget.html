@@ -1,0 +1,40 @@
+<section class="sleep-card graph-widget">
+  <div class="graph-top">
+    <label class="graph-picker">
+      <i class="bi bi-bar-chart-line" aria-hidden="true"></i>
+
+      <select [(ngModel)]="graphView" aria-label="Choose graph view">
+        <option value="week">Sleep duration</option>
+        <option value="month">Current month</option>
+        <option value="year">Current year</option>
+      </select>
+    </label>
+
+    <div class="range-toggle" aria-label="Graph range">
+      <button class="active" type="button">7d</button>
+      <button type="button" disabled>30d</button>
+    </div>
+  </div>
+
+  <div class="graph-area" aria-label="Sleep duration graph">
+    <div
+      class="graph-column"
+      *ngFor="let bar of graphBars"
+      [attr.aria-label]="bar.label + ': ' + formatDuration(bar.minutes)"
+    >
+      <div class="bar-space">
+        <div
+          class="bar-fill"
+          [style.height]="getBarHeight(bar.minutes)"
+        ></div>
+      </div>
+
+      <span>{{ bar.label }}</span>
+    </div>
+  </div>
+
+  <div class="graph-footer">
+    <span>0</span>
+    <span>{{ peakLabel }}</span>
+  </div>
+</section>

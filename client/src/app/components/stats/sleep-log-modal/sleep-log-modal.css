@@ -1,0 +1,75 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(8px);
+}
+
+.log-modal {
+  position: relative;
+  width: min(100%, 430px);
+  padding: 1.25rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+h2 {
+  margin: 0 3rem 1rem 0;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.modal-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+label {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+label span {
+  color: #d5daf0;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  min-height: 6rem;
+  resize: none;
+}
+
+.modal-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--warning);
+  outline-offset: 3px;
+}

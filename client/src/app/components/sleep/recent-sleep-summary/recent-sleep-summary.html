@@ -1,0 +1,36 @@
+<div class="sleep-card recent-card">
+  <div class="section-heading">
+    <p class="eyebrow">Most Recent</p>
+    <h1>Recent Sleep Data</h1>
+  </div>
+
+  <div class="sleep-summary-widget" *ngIf="sleepLog; else noRecentSleep">
+    <div class="sleep-summary-row">
+      <div class="sleep-summary-item">
+        <span>Start</span>
+        <strong>{{ formatTime(sleepLog.startTime) }}</strong>
+      </div>
+
+      <div class="sleep-summary-item">
+        <span>End</span>
+        <strong>{{ formatTime(sleepLog.endTime) }}</strong>
+      </div>
+
+      <div class="sleep-summary-item">
+        <span>Duration</span>
+        <strong>{{ formatDuration(sleepLog.totalDuration) }}</strong>
+      </div>
+
+      <div class="sleep-summary-item">
+        <span>Rating</span>
+        <strong>{{ formatRating(sleepLog.rating) }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noRecentSleep>
+    <div class="empty-summary" role="status">
+      No sleep data logged yet.
+    </div>
+  </ng-template>
+</div>

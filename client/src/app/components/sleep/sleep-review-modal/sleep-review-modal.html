@@ -1,0 +1,58 @@
+<div class="review-modal-backdrop">
+  <section
+    class="review-modal sleep-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="reviewTitle"
+    aria-describedby="reviewDescription"
+  >
+    <button
+      class="modal-close-button"
+      type="button"
+      aria-label="Skip sleep review"
+      (click)="skipReview()"
+    >
+      ×
+    </button>
+
+    <div class="section-heading">
+      <p class="eyebrow">Sleep Review</p>
+      <h2 id="reviewTitle">Rate your sleep</h2>
+    </div>
+
+    <p id="reviewDescription" class="modal-description">
+      Rate your sleep quality from 1 to 5 stars. You can also add an optional comment.
+    </p>
+
+    <app-star-rating [(rating)]="selectedRating" />
+
+    <label class="comment-label" for="sleepComment">
+      Comment <span>(optional)</span>
+    </label>
+
+    <textarea
+      id="sleepComment"
+      rows="4"
+      [(ngModel)]="sleepComment"
+      placeholder="Optional comment about your sleep..."
+    ></textarea>
+
+    <div class="modal-actions">
+      <button
+        class="secondary-button"
+        type="button"
+        (click)="skipReview()"
+      >
+        Skip
+      </button>
+
+      <button
+        class="primary-button"
+        type="button"
+        (click)="submitReview()"
+      >
+        Submit
+      </button>
+    </div>
+  </section>
+</div>
