@@ -1,0 +1,46 @@
+.settings-page {
+  padding-bottom: 1rem;
+}
+
+.settings-header {
+  margin-bottom: 1.25rem;
+}
+
+.settings-header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2.4rem, 10vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.settings-header p {
+  margin: 0.55rem 0 0;
+  color: #aab7ff;
+  font-size: 0.95rem;
+}
+
+.settings-card {
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.card-heading {
+  margin-bottom: 1rem;
+}
+
+.card-heading p {
+  margin: 0 0 0.35rem;
+  color: #aab7ff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.card-heading h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}

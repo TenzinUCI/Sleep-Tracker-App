@@ -7,11 +7,12 @@
 <div class="app-shell">
   <header class="app-header">
     <div class="brand">
-      <div class="brand-icon">☾</div>
+      <div class="brand-icon">
+        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+      </div>
 
       <div>
         <p class="brand-label">Sleep Tracker</p>
-        <p class="brand-subtitle">Track your sleep locally</p>
       </div>
     </div>
   </header>
@@ -20,25 +21,5 @@
     <router-outlet />
   </main>
 
-  <nav class="bottom-nav" aria-label="Main navigation">
-    <a
-      routerLink="/"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      aria-label="Home page"
-    >
-      <span class="nav-icon">⌂</span>
-      <span class="nav-text">Home</span>
-    </a>
-
-    <a routerLink="/stats" routerLinkActive="active" aria-label="Stats page">
-      <span class="nav-icon">▥</span>
-      <span class="nav-text">Stats</span>
-    </a>
-
-    <a routerLink="/settings" routerLinkActive="active" aria-label="Settings page">
-      <span class="nav-icon">⚙</span>
-      <span class="nav-text">Settings</span>
-    </a>
-  </nav>
+  <app-bottom-nav />
 </div>

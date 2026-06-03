@@ -1,1 +1,34 @@
-<p>danger-zone-card works!</p>
+<section class="sleep-card danger-card">
+  <div class="card-heading">
+    <p>Danger Zone</p>
+    <h2>Delete All Data</h2>
+  </div>
+
+  <p class="card-text">
+    This removes all saved sleep logs from this device.
+  </p>
+
+  <button class="danger-button" type="button" (click)="openConfirm()">
+    <i class="bi bi-trash" aria-hidden="true"></i>
+    <span>Delete All Data</span>
+  </button>
+</section>
+
+<app-confirm-modal
+  *ngIf="confirmOpen"
+  title="Are you sure?"
+  message="Deleting data cannot be undone."
+  confirmText="Delete"
+  cancelText="Cancel"
+  (confirmClicked)="deleteData()"
+  (cancelClicked)="closeConfirm()"
+/>
+
+<app-confirm-modal
+  *ngIf="deletedMessageOpen"
+  title="Data Deleted"
+  message="Your sleep data has been deleted from this device."
+  confirmText="OK"
+  [showCancel]="false"
+  (confirmClicked)="closeDeletedMessage()"
+/>

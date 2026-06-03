@@ -31,12 +31,7 @@
   line-height: 1.5;
 }
 
-.suggestion-note {
-  padding: 0.9rem;
-  border: 1px solid rgba(155, 180, 255, 0.4);
-  border-radius: var(--radius-md);
-  background: rgba(155, 180, 255, 0.14);
-  color: #ffffff;
-  font-size: 0.88rem;
-  line-height: 1.45;
+.suggestion-card button {
+  width: 100%;
+  margin-bottom: 1rem;
 }

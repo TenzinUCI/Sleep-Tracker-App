@@ -10,14 +10,11 @@
       </section>
 
       <section class="col-12 col-lg-4">
-        <app-sleep-suggestion-card [sleepLog]="recentSleepLog" />
+        <app-sleep-suggestion-card [sleepLog]="recentSleepLog" [logs]="logs" />
       </section>
     </div>
   </div>
 </section>
 
-<app-sleep-review-modal
-  *ngIf="showReviewModal"
-  (reviewSubmitted)="handleReviewSubmitted($event)"
-  (reviewSkipped)="handleReviewSkipped()"
-/>
+<app-sleep-review-modal *ngIf="showReviewModal" (reviewSubmitted)="handleReviewSubmitted($event)"
+  (reviewSkipped)="handleReviewSkipped()" />

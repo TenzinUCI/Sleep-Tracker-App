@@ -1,1 +1,18 @@
-<p>settings-row works!</p>
+<div class="settings-row">
+  <div class="settings-copy">
+    <strong>{{ title }}</strong>
+    <span>{{ description }}</span>
+  </div>
+
+  <button
+    class="toggle-button"
+    type="button"
+    [class.active]="checked"
+    [disabled]="disabled"
+    (click)="toggleSetting()"
+    [attr.aria-pressed]="checked"
+    [attr.aria-label]="title"
+  >
+    <span></span>
+  </button>
+</div>

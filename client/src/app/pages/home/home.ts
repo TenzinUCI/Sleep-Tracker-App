@@ -26,6 +26,10 @@ export class Home {
 
   constructor(private sleepLogStorage: SleepLogStorage) {}
 
+  get logs(): SleepLog[] {
+    return this.sleepLogStorage.getLogs();
+  } 
+
   get recentSleepLog(): SleepLog | null {
     const logs = this.sleepLogStorage.getLogs();
 

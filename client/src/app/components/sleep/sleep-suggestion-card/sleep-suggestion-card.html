@@ -1,14 +1,19 @@
 <div class="sleep-card suggestion-card">
   <div class="section-heading">
     <p class="eyebrow">Sleep Suggestion</p>
-    <h2>Sleep Suggestion</h2>
+    <h2>AI Sleep</h2>
   </div>
 
   <p aria-live="polite">
-    {{ suggestion }}
+    {{ loading ? 'Generating sleep suggestion...' : suggestion }}
   </p>
 
-  <div class="suggestion-note">
-    OpenAI suggestions can be added later. This version uses simple local logic.
-  </div>
+  <button
+    class="primary-button"
+    type="button"
+    (click)="generateSuggestion()"
+    [disabled]="loading || logs.length === 0"
+  >
+    {{ loading ? 'Generating...' : 'Generate AI Suggestion' }}
+  </button>
 </div>

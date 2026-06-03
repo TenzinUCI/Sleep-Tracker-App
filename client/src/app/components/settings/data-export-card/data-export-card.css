@@ -1,0 +1,44 @@
+.export-card {
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.card-heading {
+  margin-bottom: 0.75rem;
+}
+
+.card-heading p {
+  margin: 0 0 0.35rem;
+  color: #aab7ff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.card-heading h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.card-text {
+  margin: 0 0 1rem;
+  color: #d5daf0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+}
+
+.primary-button:focus-visible {
+  outline: 3px solid var(--warning);
+  outline-offset: 3px;
+}

@@ -1,1 +1,52 @@
-<p>settings works!</p>
+<section class="settings-page">
+  <div class="container-fluid px-0">
+    <header class="settings-header">
+      <h1>Settings</h1>
+      <p>Manage your sleep tracker preferences.</p>
+    </header>
+
+    <section class="sleep-card settings-card">
+      <div class="card-heading">
+        <p>Appearance</p>
+      </div>
+
+      <app-settings-row
+        title="Dark Mode"
+        description="Dark mode is default."
+        [checked]="true"
+        [disabled]="true"
+      />
+    </section>
+
+    <section class="sleep-card settings-card">
+      <div class="card-heading">
+        <p>Accessibility</p>
+      </div>
+
+      <app-settings-row
+        title="High Contrast"
+        description="Increases contrast for better readability."
+        [checked]="highContrast"
+        (checkedChange)="toggleHighContrast($event)"
+      />
+
+      <app-settings-row
+        title="Text to Speech"
+        description="Enable read aloud."
+        [checked]="textToSpeech"
+        (checkedChange)="toggleTextToSpeech($event)"
+      />
+
+      <app-settings-row
+        title="Notifications"
+        description="Enable notifications to recieve update on your sleep timer and log."
+        [checked]="notifications"
+        (checkedChange)="toggleNotifications($event)"
+      />
+    </section>
+
+    <app-data-export-card />
+
+    <app-danger-zone-card />
+  </div>
+</section>

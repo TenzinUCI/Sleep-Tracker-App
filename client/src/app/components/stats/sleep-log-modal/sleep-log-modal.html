@@ -14,38 +14,90 @@
       ×
     </button>
 
-    <h2 id="modalTitle">{{ title }}</h2>
+    <div class="modal-heading">
+      <p>{{ log ? 'Edit Entry' : 'New Entry' }}</p>
+      <h2 id="modalTitle">{{ title }}</h2>
+    </div>
 
     <form class="modal-form" (ngSubmit)="save()">
-      <label for="startTime">Start time</label>
-      <input
-        id="startTime"
-        name="startTime"
-        type="datetime-local"
-        [(ngModel)]="startTime"
-        required
-      />
+      <section class="time-section">
+        <div class="time-section-heading">
+          <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+          <h3>Start</h3>
+        </div>
 
-      <label for="endTime">End time</label>
-      <input
-        id="endTime"
-        name="endTime"
-        type="datetime-local"
-        [(ngModel)]="endTime"
-        required
-      />
+        <div class="field-row">
+          <label for="startDate">Date</label>
+          <input
+            id="startDate"
+            name="startDate"
+            type="date"
+            [(ngModel)]="startDate"
+            required
+          />
+        </div>
 
-      <label>Rating</label>
-      <app-star-rating [(rating)]="rating" />
+        <div class="field-row">
+          <label for="startTime">Time</label>
+          <input
+            id="startTime"
+            name="startTime"
+            type="time"
+            [(ngModel)]="startTime"
+            required
+          />
+        </div>
+      </section>
 
-      <label for="comment">Comment <span>(optional)</span></label>
-      <textarea
-        id="comment"
-        name="comment"
-        rows="3"
-        [(ngModel)]="comment"
-        placeholder="Optional sleep note..."
-      ></textarea>
+      <section class="time-section">
+        <div class="time-section-heading">
+          <i class="bi bi-sunrise-fill" aria-hidden="true"></i>
+          <h3>End</h3>
+        </div>
+
+        <div class="field-row">
+          <label for="endDate">Date</label>
+          <input
+            id="endDate"
+            name="endDate"
+            type="date"
+            [(ngModel)]="endDate"
+            required
+          />
+        </div>
+
+        <div class="field-row">
+          <label for="endTime">Time</label>
+          <input
+            id="endTime"
+            name="endTime"
+            type="time"
+            [(ngModel)]="endTime"
+            required
+          />
+        </div>
+      </section>
+
+      <div class="duration-box">
+        <span>Duration</span>
+        <strong>{{ durationText }}</strong>
+      </div>
+
+      <section class="rating-section">
+        <label>Rating</label>
+        <app-star-rating [(rating)]="rating" />
+      </section>
+
+      <div class="comment-section">
+        <label for="comment">Comment <span>(optional)</span></label>
+        <textarea
+          id="comment"
+          name="comment"
+          rows="3"
+          [(ngModel)]="comment"
+          placeholder="Optional sleep note..."
+        ></textarea>
+      </div>
 
       <div class="modal-actions">
         <button

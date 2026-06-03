@@ -6,8 +6,10 @@ import { SleepLog } from '../../../data/sleep-log';
 type GraphView = 'week' | 'month' | 'year';
 
 interface GraphBar {
+  id: string;
   label: string;
   minutes: number;
+  detail: string;
 }
 
 @Component({
@@ -20,6 +22,7 @@ export class SleepGraphWidget {
   @Input() logs: SleepLog[] = [];
 
   graphView: GraphView = 'week';
+  selectedId = '';
 
   get graphBars(): GraphBar[] {
     if (this.graphView === 'month') {
@@ -40,6 +43,22 @@ export class SleepGraphWidget {
   get peakLabel(): string {
     const hours = Math.round(this.maxMinutes / 60);
     return `${hours}h peak`;
+  }
+
+  get selectedBar(): GraphBar | null {
+    return this.graphBars.find((bar) => bar.id === this.selectedId) ?? null;
+  }
+
+  changeGraphView(): void {
+    this.selectedId = '';
+  }
+
+  selectBar(bar: GraphBar): void {
+    this.selectedId = bar.id;
+  }
+
+  isSelected(bar: GraphBar): boolean {
+    return this.selectedId === bar.id;
   }
 
   getBarHeight(minutes: number): string {
@@ -66,27 +85,42 @@ export class SleepGraphWidget {
   }
 
   private getWeekBars(): GraphBar[] {
-    const labels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    const days = [
+      { id: 'mon', label: 'M' },
+      { id: 'tue', label: 'T' },
+      { id: 'wed', label: 'W' },
+      { id: 'thu', label: 'T' },
+      { id: 'fri', label: 'F' },
+      { id: 'sat', label: 'S' },
+      { id: 'sun', label: 'S' },
+    ];
+
     const weekStart = this.getWeekStart(new Date());
 
-    return labels.map((label, index) => {
+    return days.map((day, index) => {
       const date = new Date(weekStart);
       date.setDate(weekStart.getDate() + index);
 
       return {
-        label,
+        id: day.id,
+        label: day.label,
         minutes: this.getMinutesForDay(date),
+        detail: date.toLocaleDateString([], {
+          weekday: 'long',
+          month: 'short',
+          day: 'numeric',
+        }),
       };
     });
   }
 
   private getMonthBars(): GraphBar[] {
     const bars: GraphBar[] = [
-      { label: 'W1', minutes: 0 },
-      { label: 'W2', minutes: 0 },
-      { label: 'W3', minutes: 0 },
-      { label: 'W4', minutes: 0 },
-      { label: 'W5', minutes: 0 },
+      { id: 'week-1', label: 'W1', minutes: 0, detail: 'Week 1' },
+      { id: 'week-2', label: 'W2', minutes: 0, detail: 'Week 2' },
+      { id: 'week-3', label: 'W3', minutes: 0, detail: 'Week 3' },
+      { id: 'week-4', label: 'W4', minutes: 0, detail: 'Week 4' },
+      { id: 'week-5', label: 'W5', minutes: 0, detail: 'Week 5' },
     ];
 
     const now = new Date();
@@ -107,23 +141,23 @@ export class SleepGraphWidget {
   }
 
   private getYearBars(): GraphBar[] {
-    const labels = [
-      'J',
-      'F',
-      'M',
-      'A',
-      'M',
-      'J',
-      'J',
-      'A',
-      'S',
-      'O',
-      'N',
-      'D',
+    const months = [
+      { id: 'jan', label: 'J', detail: 'January' },
+      { id: 'feb', label: 'F', detail: 'February' },
+      { id: 'mar', label: 'M', detail: 'March' },
+      { id: 'apr', label: 'A', detail: 'April' },
+      { id: 'may', label: 'M', detail: 'May' },
+      { id: 'jun', label: 'J', detail: 'June' },
+      { id: 'jul', label: 'J', detail: 'July' },
+      { id: 'aug', label: 'A', detail: 'August' },
+      { id: 'sep', label: 'S', detail: 'September' },
+      { id: 'oct', label: 'O', detail: 'October' },
+      { id: 'nov', label: 'N', detail: 'November' },
+      { id: 'dec', label: 'D', detail: 'December' },
     ];
 
-    const bars = labels.map((label) => ({
-      label,
+    const bars = months.map((month) => ({
+      ...month,
       minutes: 0,
     }));
 

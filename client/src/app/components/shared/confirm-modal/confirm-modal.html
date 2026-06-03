@@ -1,1 +1,34 @@
-<p>confirm-modal works!</p>
+<div class="modal-backdrop">
+  <section
+    class="sleep-card confirm-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="confirmTitle"
+    aria-describedby="confirmMessage"
+  >
+    <h2 id="confirmTitle">{{ title }}</h2>
+
+    <p id="confirmMessage">
+      {{ message }}
+    </p>
+
+    <div class="modal-actions">
+      <button
+        *ngIf="showCancel"
+        class="secondary-button"
+        type="button"
+        (click)="cancelClicked.emit()"
+      >
+        {{ cancelText }}
+      </button>
+
+      <button
+        class="danger-button"
+        type="button"
+        (click)="confirmClicked.emit()"
+      >
+        {{ confirmText }}
+      </button>
+    </div>
+  </section>
+</div>

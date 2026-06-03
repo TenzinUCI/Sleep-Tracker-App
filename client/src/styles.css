@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-/* ---------- CSS Theme Variables ---------- */
 
 :root {
   --bg-main: #090a0f;
@@ -24,7 +23,6 @@
   --radius-lg: 1.5rem;
 }
 
-/* ---------- Base Reset ---------- */
 
 html,
 body {
@@ -45,7 +43,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ---------- Star Background Layer ---------- */
 
 .star-background {
   position: fixed;
@@ -249,7 +246,6 @@ body {
     1969px 645px #fff;
 }
 
-/* ---------- App Content Layer ---------- */
 
 .app-shell {
   position: relative;
@@ -257,7 +253,6 @@ body {
   min-height: 100vh;
 }
 
-/* ---------- Reusable App Classes ---------- */
 
 .sleep-card {
   border: 1px solid var(--border-soft);
@@ -320,8 +315,6 @@ button:disabled {
   opacity: 0.5;
 }
 
-/* ---------- Forms ---------- */
-
 input,
 textarea,
 select {
@@ -344,7 +337,6 @@ select:focus {
   outline-offset: 2px;
 }
 
-/* ---------- Animations ---------- */
 
 @keyframes animStar {
   from {
@@ -366,7 +358,16 @@ select:focus {
   }
 }
 
-/* ---------- Accessibility: Reduced Motion ---------- */
+body.high-contrast {
+  --bg-card: rgba(0, 0, 0, 0.94);
+  --bg-card-soft: rgba(0, 0, 0, 0.9);
+  --text-main: #ffffff;
+  --text-muted: #ffffff;
+  --accent: #ffffff;
+  --accent-strong: #ffffff;
+  --border-soft: rgba(255, 255, 255, 0.75);
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .star-background::before,

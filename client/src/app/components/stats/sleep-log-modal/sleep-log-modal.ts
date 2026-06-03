@@ -24,8 +24,11 @@ export class SleepLogModal implements OnInit {
   @Output() saveClicked = new EventEmitter<SleepLogFormData>();
   @Output() closeClicked = new EventEmitter<void>();
 
+  startDate = '';
   startTime = '';
+  endDate = '';
   endTime = '';
+
   rating = 5;
   comment = '';
 
@@ -33,13 +36,40 @@ export class SleepLogModal implements OnInit {
     return this.log ? 'Edit sleep log' : 'Add sleep log';
   }
 
+  get durationText(): string {
+    if (!this.canSave()) {
+      return 'Select a valid start and end time';
+    }
+
+    const duration = this.getDuration();
+
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+
+    if (hours === 0) {
+      return `${minutes}m`;
+    }
+
+    if (minutes === 0) {
+      return `${hours}h`;
+    }
+
+    return `${hours}h ${minutes}m`;
+  }
+
   ngOnInit(): void {
     if (!this.log) {
       return;
     }
 
-    this.startTime = this.toInputValue(this.log.startTime);
-    this.endTime = this.toInputValue(this.log.endTime);
+    const start = new Date(this.log.startTime);
+    const end = new Date(this.log.endTime);
+
+    this.startDate = this.getDateValue(start);
+    this.startTime = this.getTimeValue(start);
+    this.endDate = this.getDateValue(end);
+    this.endTime = this.getTimeValue(end);
+
     this.rating = this.log.rating ?? 5;
     this.comment = this.log.comment ?? '';
   }
@@ -49,17 +79,14 @@ export class SleepLogModal implements OnInit {
       return;
     }
 
-    const startDate = new Date(this.startTime);
-    const endDate = new Date(this.endTime);
-    const totalDuration = Math.round(
-      (endDate.getTime() - startDate.getTime()) / 60000,
-    );
-
+    const start = this.getStartDate();
+    const end = this.getEndDate();
+    const totalDuration = this.getDuration();
     const cleanedComment = this.comment.trim();
 
     this.saveClicked.emit({
-      startTime: startDate.toISOString(),
-      endTime: endDate.toISOString(),
+      startTime: start.toISOString(),
+      endTime: end.toISOString(),
       totalDuration,
       rating: this.rating,
       comment: cleanedComment.length > 0 ? cleanedComment : null,
@@ -71,11 +98,11 @@ export class SleepLogModal implements OnInit {
   }
 
   canSave(): boolean {
-    if (!this.startTime || !this.endTime) {
+    if (!this.startDate || !this.startTime || !this.endDate || !this.endTime) {
       return false;
     }
 
-    return new Date(this.endTime).getTime() > new Date(this.startTime).getTime();
+    return this.getEndDate().getTime() > this.getStartDate().getTime();
   }
 
   @HostListener('document:keydown.escape')
@@ -83,10 +110,36 @@ export class SleepLogModal implements OnInit {
     this.close();
   }
 
-  private toInputValue(dateString: string): string {
-    const date = new Date(dateString);
-    const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+  private getStartDate(): Date {
+    return new Date(`${this.startDate}T${this.startTime}`);
+  }
 
-    return localDate.toISOString().slice(0, 16);
+  private getEndDate(): Date {
+    return new Date(`${this.endDate}T${this.endTime}`);
+  }
+
+  private getDuration(): number {
+    return Math.round(
+      (this.getEndDate().getTime() - this.getStartDate().getTime()) / 60000,
+    );
+  }
+
+  private getDateValue(date: Date): string {
+    const year = date.getFullYear();
+    const month = this.pad(date.getMonth() + 1);
+    const day = this.pad(date.getDate());
+
+    return `${year}-${month}-${day}`;
+  }
+
+  private getTimeValue(date: Date): string {
+    const hours = this.pad(date.getHours());
+    const minutes = this.pad(date.getMinutes());
+
+    return `${hours}:${minutes}`;
+  }
+
+  private pad(value: number): string {
+    return value.toString().padStart(2, '0');
   }
 }
