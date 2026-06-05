@@ -1,0 +1,15 @@
+Sleep Tracker Application
+
+Stack:
+- Angular (primary)
+- Bootstrap (grid layout and icons only)
+- Node.js express (backend)
+
+API:
+- OpenAI api
+
+
+IMPORTANT NOTE: 
+- I removed token key - was unsure if I should submit it or not 
+
+
