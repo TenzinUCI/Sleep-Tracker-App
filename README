@@ -22,7 +22,7 @@ Key: 300
 
 
 Project Set up: 
-- Create server/.env file and place API="KEY" and PORT=3000
+- Create server/.env file and place OPENAI_API_KEY="KEY" and PORT=3000
 - cd client folder, run npm install
 - cd server folder, run npm install
 
