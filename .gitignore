@@ -6,7 +6,6 @@
 
 client/.env
 client/.env.*
-!client/.env.example
 
 server/.env
 server/.env.*

@@ -12,4 +12,23 @@ API:
 IMPORTANT NOTE: 
 - I removed token key - was unsure if I should submit it or not 
 
+setup: 
+Setting up API Key: 
+cd ./server/.env
+and create a .env file
+format:
+API: 
+Key: 300
 
+
+Project Set up: 
+- Create server/.env file and place API="KEY" and PORT=3000
+- cd client folder, run npm install
+- cd server folder, run npm install
+
+Starting Project:
+- cd server
+- run npm run dev
+- open a second powershell and cd to client
+- run npm start
+- Go to: http://localhost:4200
