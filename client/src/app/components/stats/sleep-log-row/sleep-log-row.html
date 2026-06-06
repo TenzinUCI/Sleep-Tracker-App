@@ -3,7 +3,10 @@
   role="button"
   tabindex="0"
   (click)="editClicked.emit(log)"
+  (keydown.enter)="editClicked.emit(log)"
+  (keydown.space)="editClicked.emit(log)"
   [attr.aria-label]="'Edit sleep log from ' + formatDate(log.endTime)"
+
 >
   <div class="log-info">
     <strong>{{ formatDuration(log.totalDuration) }}</strong>
